@@ -1,0 +1,77 @@
+title: Root Scene
+new-page: true
+go-to: post_event if started = 1; start_menu if started = 0
+
+@start_menu
+new-page: true
+go-to: start_menu_2
+
+= Social Democracy: An Alternate Horizon <br>
+
+@start_menu_2
+
+<div style="width: 100%; height: 300px; background-image: url('img/root.jpg'); background-size: cover; background-position: center;"></div>
+
+- @start: Start game
+- @mod_info: Mod Information
+- @game_over.achievements
+
+@start
+on-arrival: {! 
+// --- SPD identity customization ---
+Q.spd_custom_name = Q.spd_custom_name || "SPD";
+Q.spd_custom_color = Q.spd_custom_color || { r: 227, g: 0, b: 15 };
+
+Q.get_spd_rgb = function() {
+    var color = Q.spd_custom_color || { r: 227, g: 0, b: 15 };
+    return [
+        color.r != null ? color.r : 227,
+        color.g != null ? color.g : 0,
+        color.b != null ? color.b : 15
+    ];
+};
+
+Q.get_spd_color = function() {
+    var rgb = Q.get_spd_rgb();
+    return "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")";
+};
+
+Q.get_spd_name = function() {
+    return Q.spd_custom_name || "SPD";
+};
+
+Q.apply_spd_identity = function() {
+    var rgb = Q.get_spd_rgb();
+    var color = "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")";
+    if (document && document.documentElement) {
+        document.documentElement.style.setProperty('--spd-party-color', color);
+    }
+};
+Q.apply_spd_identity();
+// --- end SPD identity customization ---
+
+Q.time = 0;
+Q.year = 1927;
+Q.month = 11;
+Q.month_actions = 0;
+if (!Q.rng_seed) {
+    Q.rng_seed = Date.now() & 0xFFFFFFFF;
+}
+
+Q.player_party = "SPD";
+Q.country_name = "Weimar Republic";
+Q.spd_prussia = 1;
+Q.prussian_government = "SPD";
+Q.presidential_patience = 50;
+Q.historical_mode = 0;
+Q.difficulty = 0;
+Q.resources = 2;
+Q.dues = 2;
+Q.dissent = 0.05;
+Q.dissent_percent = 5;
+Q.ideology = "centrist";
+
+Q.party_relations = Q.party_relations || {};
+!}
+
+go-to: post_event

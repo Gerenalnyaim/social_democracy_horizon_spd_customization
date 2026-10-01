@@ -1,0 +1,34 @@
+# Social Democracy: An Alternate Horizon - SPD Customization Fork
+
+This repo contains the SPD identity customization patch for the Social Democracy mod workflow.
+
+## Added feature
+
+- Sandbox menu option: `SPD Identity`
+- Custom SPD party name (1-50 characters)
+- Custom SPD color selected via RGB inputs
+- Reset to default SPD values
+- CSS custom property hooking for the party color (`--spd-party-color`)
+
+## Files added
+
+- `source/scenes/root.scene.dry`
+- `source/scenes/sandbox.scene.dry`
+
+## Variables used
+
+- `Q.spd_custom_name`
+- `Q.spd_custom_color`
+- `Q.get_spd_name()`
+- `Q.get_spd_rgb()`
+- `Q.get_spd_color()`
+- `Q.apply_spd_identity()`
+
+## Default values
+
+- Name: `SPD`
+- Color: `rgb(227, 0, 15)`
+
+## Notes
+
+This repo is meant to hold the patch for the mod and is not a full upstream dump of the original game.
